@@ -24,7 +24,7 @@ var validatad = rows
     var _a = extraxtParams(x), firstIndex = _a.firstIndex, secondIndex = _a.secondIndex, letter = _a.letter, password = _a.password;
     var firstMatch = getStingLetterOfIndex(firstIndex, password) === letter;
     var secondMatch = getStingLetterOfIndex(secondIndex, password) === letter;
-    var res = (!!firstIndex || !!secondMatch) && (firstMatch !== secondMatch);
+    var res = (!!firstMatch || !!secondMatch) && (firstMatch !== secondMatch);
     console.log(extraxtParams(x));
     console.log(res);
     return res;
@@ -33,3 +33,4 @@ console.log('valid:');
 console.log(validatad.filter(function (x) { return !!x; }).length);
 console.log('of:');
 console.log(rows.length);
+//# sourceMappingURL=index.js.map

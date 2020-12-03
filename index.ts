@@ -3,40 +3,43 @@ import { data } from './data'
 const rows = data.split('\n');
 
 const extraxtParams = (row: string): {
-  min: number;
-  max: number;
-  letterOccurrance: number;
+  firstIndex: number;
+  secondIndex: number;
+  letter: string;
+  password: string;
 } => {
   let split = row.split(': ');
+  
   let rule = split[0];
-  let ruleSplit = rule.split(' ');
-
   let password = split[1];
 
-  let minMaxString = ruleSplit[0]; // 1-2
-  let min = parseInt(minMaxString.split('-')[0]);
-  let max = parseInt(minMaxString.split('-')[1]);
+  let ruleSplit = rule.split(' ');
 
+  let indicesSting = ruleSplit[0]; // 1-2
   let letter = ruleSplit[1]; // a
 
-  let regexp = new RegExp(`[^${letter}]`, 'g');
+  let firstIndex = parseInt(indicesSting.split('-')[0]);
+  let secondIndex = parseInt(indicesSting.split('-')[1]);
 
-  let letterOccurrance = password.replace(regexp, '').length;
 
   return {
-    min,
-    max,
-    letterOccurrance
+    firstIndex: firstIndex - 1,
+    secondIndex: secondIndex - 1,
+    letter,
+    password
   };
 }
 
+const getStingLetterOfIndex = (i: number, p: string): string => p.slice(i, i+1);
+
 const validatad = rows
   .map(x => {
-    var params = extraxtParams(x);
-    return (
-      (params.letterOccurrance <= params.max) &&
-      (params.letterOccurrance >= params.min)
-    );
+    var { firstIndex, secondIndex, letter, password } = extraxtParams(x);
+    var firstMatch = getStingLetterOfIndex(firstIndex, password) === letter;
+    var secondMatch = getStingLetterOfIndex(secondIndex, password) === letter;
+    var res = (!!firstMatch || !!secondMatch) && (firstMatch !== secondMatch);
+    
+    return res;
   });
 
   console.log('valid:');
