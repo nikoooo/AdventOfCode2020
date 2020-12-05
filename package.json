@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc index.ts"
+    "build": "rm -rf ./out/* && tsc day$npm_config_day/$npm_config_part/index.ts --outDir ./out && node ./out/index.js"
   },
   "author": "",
   "license": "ISC"
