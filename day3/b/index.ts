@@ -1,5 +1,4 @@
-import { createVoidZero } from 'typescript';
-import { data } from './data';
+import { data } from '../data';
 
 type Move = {
   right: number;

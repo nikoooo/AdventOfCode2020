@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jasmine-ts --config=jasmine.json",
-    "build": "rm -rf ./out/* && tsc day$npm_config_day/$npm_config_part/index.ts --outDir ./out && node ./out/index.js",
-    "buildjas": "rm -rf ./out/* && tsc day$npm_config_day/$npm_config_part/test2.spec.ts --outDir ./out && node ./out/test2.spec.js",
+    "build": "rm -rf ./out/* && tsc day$npm_config_day/$npm_config_part/index.ts --outDir ./out && node ./out/$npm_config_part/index.js",
     "jas": "node out/index.js --config=jasmine.json day3/b/test2.spec.ts --transpileOnly --compilerOptions='{\"allowJs\": true}'"
   },
   "author": "",
